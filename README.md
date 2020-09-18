@@ -1,4 +1,5 @@
-# Awesome Project Build with TypeORM
+# Awesome Project Build with TypeORM CLI
+
 
 Steps to run this project:
 
