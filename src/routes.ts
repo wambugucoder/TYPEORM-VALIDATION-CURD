@@ -4,6 +4,7 @@ import { Router } from "express";
 
 
 const router: Router = express.Router();
+
 router.get('/user', AllUsers);
 router.delete('/user/:id', Remove);
 router.get('/user/:id',GetOne );

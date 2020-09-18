@@ -1,44 +1,58 @@
 import {getRepository} from "typeorm";
-import {NextFunction, Request, Response} from "express";
+import { Request, Response} from "express";
 import {User} from "../entity/User";
 
 import { validate } from "class-validator";
-import { plainToClass } from "class-transformer";
+
 
 
 
   
 
-    export const AllUsers =async (request: Request, response: Response, next: NextFunction) =>{
+export const AllUsers = async (request: Request, response: Response) =>{
         const userRepository = getRepository(User);
-        return userRepository.find();
+         userRepository.find().then((done) => {response.json(done)})
     }
 
-export const GetOne = async (request: Request, response: Response, next: NextFunction) => {
+export const GetOne = async (request: Request, response: Response) => {
     const userRepository = getRepository(User);
-        return userRepository.findOne(request.params.id);
+    userRepository.findOne(request.params.id).then((user) => {
+        if (user) {
+               response.json(user) 
+            }
+        else {
+            response.status(404).json({user:"Couldn't Find The Requested User"})
+            }
+        })
     }
 
-export const CreateUser = async (request: Request, response: Response, next: NextFunction) => {
+export const CreateUser = async (request: Request, response: Response)=> {
     const userRepository = getRepository(User);
-        const user =  plainToClass(User, request.body);
+    let user = new User();
+    user.name = request.body.name;
+    user.email = request.body.email;
+    user.password = request.body.password;
+
         const errors = await validate(user, { skipMissingProperties: true });
-        if (errors) {
+        if (errors.length >=1) {
+           
             let errorTexts = Array();
                for (const errorItem of errors) {
                    errorTexts = errorTexts.concat(errorItem.constraints);
                }
-               return response.status(400).send(errors);
+               
+               return response.status(400).send(errorTexts);
         }
+
         else {
-            response.json(request.body);
-            //return this.userRepository.save(user)
+             userRepository.save(user).then((saved) => {response.json(saved)})
         }
         
+    
        
     }
 
-    export const Remove =async (request: Request, response: Response, next: NextFunction) =>{
+    export const Remove =async (request: Request, response: Response) =>{
         const userRepository = getRepository(User);
         let userToRemove = await userRepository.findOne(request.params.id);
         await userRepository.remove(userToRemove);
