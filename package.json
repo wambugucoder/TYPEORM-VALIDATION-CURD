@@ -23,7 +23,7 @@
       "pg": "^7.3.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.26",
-      "validator": "^13.1.17"
+      "validator": "^13.5.1"
    },
    "scripts": {
       "start": "ts-node src/index.ts",
