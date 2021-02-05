@@ -16,7 +16,7 @@
       "@ts-simple/is-empty": "^1.0.0",
       "body-parser": "^1.18.1",
       "circular-structure-stringify": "^1.0.6",
-      "class-transformer": "^0.3.1",
+      "class-transformer": "^0.3.2",
       "class-validator": "^0.12.2",
       "express": "^4.15.4",
       "is-empty": "^1.2.0",
