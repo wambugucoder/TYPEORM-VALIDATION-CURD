@@ -20,7 +20,7 @@
       "class-validator": "^0.12.2",
       "express": "^4.15.4",
       "is-empty": "^1.2.0",
-      "pg": "^7.3.0",
+      "pg": "^8.4.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.26",
       "validator": "^13.1.17"
