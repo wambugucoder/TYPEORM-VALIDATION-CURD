@@ -14,7 +14,7 @@
    },
    "dependencies": {
       "@ts-simple/is-empty": "^1.0.0",
-      "body-parser": "^1.18.1",
+      "body-parser": "^1.20.3",
       "circular-structure-stringify": "^1.0.6",
       "class-transformer": "^0.3.1",
       "class-validator": "^0.12.2",
